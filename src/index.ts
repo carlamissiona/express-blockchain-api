@@ -14,22 +14,19 @@ app.use(bodyParser.raw({ type: "application/vnd.custom-type" }));
 app.use(bodyParser.text({ type: "text/html" }));
 
 app.get("/blockpulse/users", async (req, res) => {
-  const { query_result } = await pool.query("SELECT * FROM BLOCKCHAIN_PULSE_USER");
-  // res.send(`Hello, World! The time from the DB`);
-  console.log(query_result.rows);
+  const { rows } = await pool.query("SELECT * FROM BLOCKCHAIN_PULSE_USER");
+  // res.send(`Hello, World! The time from the DB `);
+  console.log(rows.rows);
   res.json({
     data: [
       {
         quote: 'Not invited',
-        author: 'Invader'
+        author: 'Invader',
+        data: rows.rows
       }
     ],
     meta: {
       page: 'na'
-    },
-    
-    : {
-      query_result.rows
     }
   });
   
