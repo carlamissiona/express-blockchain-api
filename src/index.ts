@@ -16,7 +16,7 @@ app.use(bodyParser.text({ type: "text/html" }));
 app.get("/", async (req, res) => {
   const { rows } = await pool.query("SELECT NOW()");
   // res.send(`Hello, World! The time from the DB is ${rows[0].now}`);
-  console.log(rows)
+  console.log(rows);
   res.json({
     data: [
       {
