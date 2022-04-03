@@ -1,6 +1,6 @@
 import bodyParser from "body-parser";
 import express from "express";
-import pg from "pg";
+import pg from "pg";   
 
 // Connect to the database using the DATABASE_URL environment
 //   variable injected by Railway
@@ -15,7 +15,19 @@ app.use(bodyParser.text({ type: "text/html" }));
 
 app.get("/", async (req, res) => {
   const { rows } = await pool.query("SELECT NOW()");
-  res.send(`Hello, World! The time from the DB is ${rows[0].now}`);
+  // res.send(`Hello, World! The time from the DB is ${rows[0].now}`);
+  res.json({
+    data: [
+      {
+        quote: 'Not invited',
+        author: 'Invader'
+      }
+    ],
+    meta: {
+      page: 1
+    }
+  });
+  
 });
 
 app.listen(port, () => {
