@@ -15,8 +15,8 @@ app.use(bodyParser.text({ type: "text/html" }));
 
 app.get("/blockpulse/users", async (req, res) => {
   const { query_result } = await pool.query("SELECT * FROM BLOCKCHAIN_PULSE_USER");
-  // res.send(`Hello, World! The time from the DB is ${rows[0].now}`);
-  console.log(query_result);
+  // res.send(`Hello, World! The time from the DB`);
+  console.log(query_result.rows);
   res.json({
     data: [
       {
@@ -27,8 +27,9 @@ app.get("/blockpulse/users", async (req, res) => {
     meta: {
       page: 'na'
     },
-    rows: {
-      query_result
+    
+    : {
+      query_result.rows
     }
   });
   
