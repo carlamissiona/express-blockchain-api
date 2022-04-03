@@ -46,14 +46,17 @@ app.get("/blockpulse/prices", async (req, res) => {
 });
 
 app.post("/blockpulse/prices/create", async (req, res) => {
+  console.log(req);
    if (!req.body) {
-    console.log('No user is provided');
+    console.log('No price is provided');
   }
-   name = req.body.name;
-   description = req.body.description;
-   price = req.body.price;
-   type_crypto = req.body.type;
-  const { rows } = await pool.query("INSERT INTO BLOCKPULSE_PRICE ('name',	'description',	'price', 'type') ($1, $2, $3, $4)', [name,description,price, type_crypto], )");   
+   p=req.body;
+     console.log(p);
+   name_crypto= p.name;
+   description_crypto =p.description;
+   price_crypto=p.price;
+   type_crypto=p.type;
+  const { rows } = await pool.query("INSERT INTO BLOCKPULSE_PRICE ('name',	'description',	'price', 'type') ($1, $2, $3, $4)', [name_crypto,description_crypto,price_crypto, type_crypto], )");   
   console.log(rows);
   res.json({
     data: [
@@ -72,11 +75,13 @@ app.post("/blockpulse/users/create", async (req, res) => {
    if (!req.body) {
     console.log('No user is provided');
   }
-   name = req.body.name;
-   email = req.body.email;
-   password = req.body.email;
-   recovery = req.body.recovery;
-  const { rows } = await pool.query("INSERT INTO BLOCKPULSE_USER ('name',	'email',	'password', 'recovery') ($1, $2, $3, $4)', [name,email,password, recovery], )");   
+  console.log(req);
+  u=req.body;  console.log(u);
+   name_user = u.name;
+   email = u.email;
+   password = u.email;
+   recovery = u.recovery;
+  const { rows } = await pool.query("INSERT INTO BLOCKPULSE_USER ('name',	'email',	'password', 'recovery') ($1, $2, $3, $4)', [name_user,email,password, recovery], )");   
   console.log(rows);
   res.json({
     data: [
